@@ -1,0 +1,25 @@
+.movie_gallery {
+  padding-top: 50px;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: calc(-1 * 20px);
+  margin-left: calc(-1 * 20px);
+  list-style-type: none;
+}
+.gallery_item {
+  display: flex;
+  flex-basis: calc((100% - 60px) / 3);
+  margin-top: 20px;
+  margin-left: 20px;
+}
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  width: 430px;
+  height: 370px;
+  background-color: aqua;
+}
