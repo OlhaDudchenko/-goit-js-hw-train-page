@@ -13,7 +13,10 @@ export default class NewsApiService {
 
      fetchImages() {
     const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}`;
-     return fetch(url).then(response => response.json()).then(data=>console.log(data))
+         return fetch(url).then(response => response.json()).then(({ results }) => {
+             console.log(results);
+             return results
+         })
     //   .then(({ articles }) => {
     //     this.incrementPage();
     //     return articles;
