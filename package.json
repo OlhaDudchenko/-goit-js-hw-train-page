@@ -6,7 +6,7 @@
   "homepage": "https://OlhaDudchenko.github.io/goit-js-hw-train-page",
   "scripts": {
     "dev": "parcel src/*.html",
-    "build": "parcel build src/*.html --public-url /goit-js-hw-train-pageru/"
+    "build": "parcel build src/*.html --public-url /goit-js-hw-train-page/"
   },
   "repository": {
     "type": "git",
