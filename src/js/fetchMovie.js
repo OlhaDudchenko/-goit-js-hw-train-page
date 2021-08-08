@@ -7,13 +7,12 @@ export default class MovieApiService {
   constructor() {
     this.searchQuery = '';
     this.page=1;
-    
+    this.SearchId =1;
       
     }
 
   fetchMovies() {
-    const url = `
-https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&language=en-US&page=${this.page}`;
+    const url = `https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&language=en-US&page=${this.page}`;
         //  const url = `${BASE_URL}/movie/popular?api_key=${API_KEY}&language=en-US&page=${this.page}`;
          
        return fetch(url).then(response => 
@@ -26,7 +25,18 @@ https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&language=en-U
             //  this.incrementPage();
              return { results,total_pages };
          })
-    }
+  }
+  fetchById(){
+    const url=`
+https://api.themoviedb.org/3/movie/${this.SearchId}?api_key=${API_KEY}&language=en-US`
+    // const url = `https://api.themoviedb.org/3/find/${this.SearchId}?api_key=${API_KEY}&language=en-US&external_source=imdb_id`;
+    return fetch(url).then(response =>
+      response.json()
+    ).then(data => { return data})
+      
+
+
+}
 
     fetchGenres(){
     const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`;
@@ -58,6 +68,14 @@ https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&language=en-U
      this.page = newPage;
    
   }
+   get id() {
+    return this.SearchId;
+  }
+  set id(newId) {
+  
+     this.SearchId = newId;
+   
+  }
 }
 
 // class Pagination {
@@ -73,4 +91,3 @@ https://api.themoviedb.org/3/trending/movie/day?api_key=${API_KEY}&language=en-U
 
 
 
-// }

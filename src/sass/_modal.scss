@@ -16,45 +16,49 @@
 .lightbox.is-open {
   opacity: 1;
   pointer-events: initial;
-}
-
-.lightbox__overlay {
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
   background-color: rgba(0, 0, 0, 0.8);
 }
 
+// .lightbox__overlay {
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   height: 100vh;
+//   background-color: rgba(0, 0, 0, 0.8);
+// }
+
 .lightbox__content {
   //   position: absolute;
-  transform: scale(0.95);
-  transition: transform var(--animation-duration) var(--timing-function);
+  // transform: scale(0.95);
+  // transition: transform var(--animation-duration) var(--timing-function);
   background-color: #fff;
-  transform: translate(-50%, -50%) scale(1);
+  border-radius: 5px;
+  // transform: translate(-50%, -50%) scale(1);
   //   width: 882px;
   //   height: 568px;
   //   padding: 50px 30px 40.2px 30px;
   @media screen and(max-width: 767px) {
     max-width: 280px;
-    // max-height: 581px;
+    max-height: 958px;
     height: 90vh;
     width: 90vw;
-    overflow: hidden;
+    overflow: auto;
     position: relative;
   }
 
-  //   @media screen and(min-width: 768px) {
-  //     position: absolute;
-  //     left: 50%;
-  //     top: 50%;
-  //     width: 450px;
-  //     height: 609px;
-  //     padding: 40px;
+  @media screen and(min-width: 768px) {
+    position: absolute;
+    // left: 50%;
+    // top: 50%;
+    height: 90vh;
+    width: 90vw;
+    width: 618px;
+    height: 562px;
+    padding: 42px 30px 40px 28px;
 
-  //     transform: translate(-50%, -50%) scale(1);
-  //     transition: transform var(--time) var(--time-function);
-  //   }
+    transform: translate(-50%, -50%) scale(1);
+    transition: transform var(--time) var(--time-function);
+  }
 
   @media screen and(min-width: 1024px) {
     width: 882px;
@@ -93,4 +97,136 @@
 .lightbox__button:hover,
 .lightbox__button:focus {
   background-color: rgba(0, 0, 0, 0.5);
+}
+
+//-------------modal-content-------------------------
+.modal_movie {
+  display: flex;
+}
+.thumb_image {
+  border-radius: 5px;
+  @media screen and(min-width: 768px) {
+    height: 373.551025390625px;
+    width: 264px;
+  }
+  height: 477.8px;
+  width: 396px;
+}
+.thumb_image_image {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.modal_movie_info {
+  margin-left: 30px;
+  width: 396px;
+}
+
+.modal_movie_title {
+  font-family: Roboto;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 35px;
+  letter-spacing: 0em;
+  margin-bottom: 20px;
+}
+.list_wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.title_about {
+  margin: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.about_text {
+  margin: 0;
+  margin-bottom: 21px;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.button_watched {
+  padding: 0;
+  height: 44px;
+  width: 136px;
+  border-radius: 5px;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  color: #fff;
+  background-color: rgba(255, 107, 1, 1);
+}
+
+.button_queue {
+  padding: 0;
+  margin-left: 15px;
+  height: 44px;
+  width: 136px;
+  border-radius: 5px;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  color: #000;
+  background-color: transparent;
+}
+
+.list_name {
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: rgba(140, 140, 140, 1);
+}
+.list_text {
+  font-family: Roboto;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+  color: #000;
+}
+
+.list_text--bigger {
+  text-transform: uppercase;
+}
+.list_text_vote {
+  display: inline-block;
+  height: 16px;
+  width: 36px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: rgba(255, 107, 1, 1);
+  text-align: center;
+}
+.list_text_vote_count {
+  margin-right: 3px;
+  color: rgba(140, 140, 140, 1);
+}
+.list {
+  width: 266px;
 }

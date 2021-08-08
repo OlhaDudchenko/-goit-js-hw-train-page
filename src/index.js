@@ -1,6 +1,7 @@
 import "../node_modules/modern-normalize/modern-normalize.css"
 import MovieApiService from "./js/fetchMovie";
 import oneCard from "./templates/oneCard.hbs";
+import movieCardById from "./templates/movieCardById"
 import './sass/main.scss';
 
 const movieBox = document.querySelector(".gallery");
@@ -193,33 +194,38 @@ async function createPages() {
 }
 //  --------------------------------------------------------------------
 const modal = document.querySelector('.js-lightbox');
-console.log(modal)
-// const modalImg = document.querySelector('.lightbox__image');
+
 const buttonClose = document.querySelector('.lightbox__button');
-const overlay = document.querySelector('.lightbox__overlay');
+const content = document.querySelector('.lightbox__content');
 movieBox.addEventListener('click', openModalOnClick);
+  
+
 function openModalOnClick(e) {
     
-    e.preventDefault()
-console.log(e.target)
+    e.preventDefault();
+
     if (!e.target.classList.contains('movie_image')) {
         return;
     }
+    document.body.style.overflow = "hidden";
     modal.classList.add('is-open');
- 
-    console.log(+e.target.dataset.index);
+    movieApiService.id = +e.target.dataset.index;
+
     window.addEventListener('keydown', closeModalOnEsk);
     buttonClose.addEventListener('click', closeModalOnClick);
-    overlay.addEventListener('click', closeModalOnClick);
+    modal.addEventListener('click', closeModalOnClick);
+     fetchMovieById();
+     
 }
 
 function closeModalOnClick() {
     modal.classList.remove('is-open');
-    // modalImg.src = '';
-    // modalImg.alt='';
+    document.body.style.overflow = "visible";
+    const modalContent = content.firstElementChild;
+    modalContent.innerHTML="";
     window.removeEventListener('keydown', closeModalOnEsk);
     buttonClose.removeEventListener('click',closeModalOnClick);
-    overlay.removeEventListener('click', closeModalOnClick);
+    modal.removeEventListener('click', closeModalOnClick);
 };
  
 function closeModalOnEsk(e) {
@@ -227,3 +233,10 @@ function closeModalOnEsk(e) {
           closeModalOnClick();
      }
 };
+
+async function fetchMovieById() {
+    const results = await movieApiService.fetchById();
+    content.insertAdjacentHTML( "afterbegin",movieCardById(results));
+    
+
+}
