@@ -24,11 +24,116 @@
 h2 {
   margin: 0;
 }
-img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+.movie_img {
   width: 430px;
   height: 370px;
   background-color: aqua;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+}
+.page_item {
+  padding: 10px;
+  margin-right: 5px;
+  border: 1px solid black;
+}
+.active {
+  background-color: orange;
+  padding: 10px;
+}
+.dots {
+  padding: 10px;
+}
+.logo_wrapper {
+  display: flex;
+  align-items: baseline;
+}
+.logo_name {
+  color: $white-accent;
+  font-family: Roboto;
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 35px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+.logo-nav_wrapper {
+  display: flex;
+  margin-bottom: 37px;
+}
+.site_nav {
+  margin-left: auto;
+}
+.input_search {
+  position: relative;
+}
+
+.header_content {
+  padding-top: 41px;
+  padding-bottom: 97px;
+  background-color: $background-accent;
+  background-image: url(../images/header_image1x.jpg);
+  text-align: center;
+}
+.site-search {
+  background-color: transparent;
+  border: none;
+  border-bottom: 0.5px solid $white-accent;
+  width: 336px;
+}
+input::placeholder {
+  color: $white-accent;
+  font-family: Roboto;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.button_search {
+  display: inline-block;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.nav_link {
+  @extend %a;
+  position: relative;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 14px;
+  letter-spacing: 0em;
+  color: $white-accent;
+  text-transform: uppercase;
+}
+.site_nav {
+  display: flex;
+}
+.site_nav :not(:last-child) {
+  margin-right: 39px;
+}
+.site_nav_item {
+  @extend %li;
+}
+.nav_link--current::after {
+  position: absolute;
+  // bottom: 0;
+  left: 0;
+  content: '';
+  display: block;
+  height: 3px;
+  width: 100%;
+  border-radius: 2px;
+  background-color: $orange-accent;
+}
+
+.movie_gallery {
+  @media screen and(max-width: 767px) {
+  }
 }

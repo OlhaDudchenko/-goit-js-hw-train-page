@@ -1,0 +1,20 @@
+class Pagination {
+    constructor() {
+        
+     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

@@ -4,4 +4,12 @@
  */
 
 // Стили для файла с примером HTML-фрагмента
+
+@import './variables';
+@import './vissually-hidden';
+@import './placeholders';
+@import './mixins';
+@import './defaults';
+@import './container';
 @import './gallery';
+@import './modal';

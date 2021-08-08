@@ -2,9 +2,17 @@
 {{#each this}}
 <li class="gallery_item">
     <a>
-    <img src='https://image.tmdb.org/t/p/w500{{poster_path}}'/>
+    <img src='https://image.tmdb.org/t/p/w500{{poster_path}}' data-index="{{id}}"class="movie_image"/>
     <div class="gallery_item_info-wrapper">
     <h2>{{title}}</h2>
+    <ul class="genres_list">
+        
+      
+        <li class="genres_list_item">{{ids}}</li>
+    
+
+   
+    </ul>
     <span>{{release_date}}</span>
     <span>{{vote_average}}</span>
     </div>  

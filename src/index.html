@@ -1,29 +1,51 @@
 <!DOCTYPE html>
 <html lang="ru">
   <head>
+      <link rel="shortcut icon" href="./images/film.ico" type="image/x-icon" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Заголовок страницы</title>
-    <!-- <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
-      integrity="sha512-ISS7cAi1PEhQ8jnbJpJZMd29NlhNj4AWYyLOSp2CE/CsHxTCu+r+t0D2yoJudVrd0/8fTVPUVDzY5Tvli75u/g=="
-      crossorigin="anonymous"
-    /> -->
+    <title>Filmoteka</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
   </head>
   <body>
-    <header>
-      <span><a>Logo</a></span>
-      <nav>
-        <a><button>home</button></a>
-        <a><button>my list</button></a>
-      </nav>
-      <label for="site-search">Search the site:</label>
-      <input type="search" id="site-search" name="q" aria-label="Search through site content">
-      <button>Search</button>
+    <header class="header_content">
+     
+      <div class="container">
+        <div class="logo-nav_wrapper">
+        <div class="logo_wrapper">
+           <a>
+      <svg width="24" height="24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M19.82 2H4.18A2.18 2.18 0 002 4.18v15.64A2.18 2.18 0 004.18 22h15.64A2.18 2.18 0 0022 19.82V4.18A2.18 2.18 0 0019.82 2zM7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"
+          stroke="#818181" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+       
+        <span class="logo_name">Filmoteka</span>
+        </a>
+        </div>
+       
+         
+        <nav class="site_nav">
+          <li class="site_nav_item"><a href="./index.html" class="nav_link nav_link--current">home</a></li>
+          <li class="site_nav_item"><a class="nav_link">my library</a></li>
+         
+        </nav>
+          </div>
+        <label for="site-search" class="input_search">
+        <input class="site-search" type="search" id="site-search" name="q" placeholder="Поиск фильмов">
+        <button type="button" class="button_search"><svg class="search" width="12" height="12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M5.5 9.5a4 4 0 100-8 4 4 0 000 8zM10.5 10.5L8.325 8.325" stroke="#fff" stroke-linecap="round"
+            stroke-linejoin="round" />
+        </svg></button>
+        </label>
+      </div>
+     
     </header>
     <main>
       <section class="movie_gallery">
+        <div class="container">
         <ul class="gallery">
         <!-- <li class="gallery_item"><img width="400" height="370"/></li>
         <li class="gallery_item"><img width="400" height="370" /></li>
@@ -36,21 +58,22 @@
         <li class="gallery_item"><img width="400" height="370" /></li> -->
       
       </ul>
-      <nav aria-label="Page navigation example">
+      </div>
+      <!-- <nav   aria-label="Page navigation"> -->
         <ul class="pagination">
-          <li class="page_item"><a class="page_link" href="#">Previous</a></li>
+          <!-- <li class="page_item"><a class="page_link_previous" href="#">Previous</a></li>
           <li class="page_item"><a class="page_link" href="#">1</a></li>
           <li class="page_item"><a class="page_link" href="#">2</a></li>
           <li class="page_item"><a class="page_link" href="#">3</a></li>
-          <li class="page_item"><a class="page_link" href="#">Next</a></li>
+          <li class="page_item"><a class="page_link_next" href="#">Next</a></li> -->
         </ul>
-      </nav>
+      <!-- </nav> -->
       </section>
     </main>
     <footer>
 
     </footer>
-    
+    <include src="./partials/modal.html"></include>
     <script src="./index.js"></script>
   </body>
 </html>
