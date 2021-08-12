@@ -2,22 +2,52 @@
 
 <div class="modal_movie">
     <div class="thumb_image">
-        <img src='https://image.tmdb.org/t/p/w500{{poster_path}}' class="thumb_image_image" />
+        <img src='https://image.tmdb.org/t/p/w500{{data.poster_path}}'  alt="{{data.title}}"  class="thumb_image_image" />
     </div>
        
         <div class="modal_movie_info">
-            <h2 class="modal_movie_title">{{original_title}}</h2>
+            <h2 class="modal_movie_title">{{data.original_title}}</h2>
             <div class="list">
-        <div class="list_wrapper"> <span class="list_name" >Vote / Votes</span><span class="list_text"><span class="list_text_vote">{{vote_average}}</span><span class="list_text_vote_count">/</span> {{vote_count}}</span></div>
-        <div class="list_wrapper"><span class="list_name">Popularity</span><span class="list_text"> {{popularity}}</span></div> 
-         <div class="list_wrapper"><span class="list_name">Original Title</span><span class="list_text list_text--bigger">{{original_title}}</span></div>
+        <div class="list_wrapper"><span class="list_name" >Vote / Votes</span><span class="list_text"><span class="list_text_vote">{{data.vote_average}}</span><span class="list_text_vote_count">/</span> {{data.vote_count}}</span></div>
+        <div class="list_wrapper"><span class="list_name">Popularity</span><span class="list_text"> {{data.popularity}}</span></div> 
+         <div class="list_wrapper"><span class="list_name">Original Title</span><span class="list_text list_text--bigger">{{data.original_title}}</span></div>
          </div>
-        <div class="list_wrapper"><span class="list_name">Genre</span><span class="list_text">{{genres}}</span></div> 
+        <div class="list_wrapper"><span class="list_name">Genre</span><span class="list_text">{{data.genres}}</span></div> 
        <h3 class="title_about">ABOUT</h3>
-      <p class="about_text"> {{overview}}</p>
+      <p class="about_text"> {{data.overview}}</p>
      
       <button class="button_watched">add to Watched</button>
-<button class="button_queue">add to queue</button>  
+<button class="button_queue">add to queue</button> 
+<button class="button_open">watch trailer</button>
+<div class="backdrop ">
+    <div class="backdrop__overlay"></div>
+
+    {{!-- <div class="lightbox__content"> --}}
+        <button type="button" class="lightbox__button" data-action="close-lightbox"></button>
+        <div class="plyr__video-embed" id="player" style="display: none;">
+            
+                <iframe
+                    src="https://www.youtube.com/embed/{{key}}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+                    allowfullscreen allowtransparency allow="autoplay">
+                </iframe>
+        
+            <button type="button" class="trailer_button" data-action="close-trailer"></button>
+        </div>
+    {{!-- </div> --}}
+
+
+</div>
+{{!-- <div class="plyr__video-embed" id="player" style="display: none;">
+   <div class="trailer_wrapper">
+        <iframe
+        src="https://www.youtube.com/embed/{{key}}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
+        allowfullscreen allowtransparency allow="autoplay">
+       </iframe>
+       </div>
+   <button type="button" class="trailer_button" data-action="close-trailer"></button>  
+</div> --}}
+
+</div>
     </div>
 
 

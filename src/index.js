@@ -1,8 +1,14 @@
-import "../node_modules/modern-normalize/modern-normalize.css"
+import "../node_modules/modern-normalize/modern-normalize.css";
 import MovieApiService from "./js/fetchMovie";
 import oneCard from "./templates/oneCard.hbs";
-import movieCardById from "./templates/movieCardById"
+import movieCardById from "./templates/movieCardById";
 import './sass/main.scss';
+import Plyr from 'plyr';
+// import  "../node_modules/plyr/src/sass";
+
+const player = new Plyr('#player');
+
+
 
 const movieBox = document.querySelector(".gallery");
 console.log(movieBox);
@@ -194,7 +200,7 @@ async function createPages() {
 }
 //  --------------------------------------------------------------------
 const modal = document.querySelector('.js-lightbox');
-
+const overlay = document.querySelector('.lightbox__overlay');
 const buttonClose = document.querySelector('.lightbox__button');
 const content = document.querySelector('.lightbox__content');
 movieBox.addEventListener('click', openModalOnClick);
@@ -210,22 +216,51 @@ function openModalOnClick(e) {
     document.body.style.overflow = "hidden";
     modal.classList.add('is-open');
     movieApiService.id = +e.target.dataset.index;
-
+    
     window.addEventListener('keydown', closeModalOnEsk);
     buttonClose.addEventListener('click', closeModalOnClick);
-    modal.addEventListener('click', closeModalOnClick);
-     fetchMovieById();
-     
+    overlay.addEventListener('click', closeModalOnClick);
+    fetchMovieById();
+    content.addEventListener('click',openTrailer)
+  
+    content.addEventListener('click', closeTrailer);
+
 }
 
+function openTrailer(e) {
+     console.log(e.target)
+        if (e.target.classList.contains("button_open")) {
+            document.querySelector(".plyr__video-embed").style.display = 'block';
+            
+            const backdrop = document.querySelector(".backdrop");
+            console.log(backdrop)
+            backdrop.classList.add("backdrop-is-open");
+        }
+    //  const backdrop = document.querySelector(".backdrop");
+    //         console.log(backdrop)
+    //         backdrop.classList.add("backdrop-is-open");
+}
+console.log(document.querySelector(".backdrop__overlay"))
+function closeTrailer(e) {
+    if(e.target.classList.contains("trailer_button")) {
+        document.querySelector(".plyr__video-embed").style.display = 'none';
+         const backdrop = document.querySelector(".backdrop");
+            console.log(backdrop)
+            backdrop.classList.remove("backdrop-is-open");
+    }
+}
 function closeModalOnClick() {
+   
     modal.classList.remove('is-open');
     document.body.style.overflow = "visible";
     const modalContent = content.firstElementChild;
-    modalContent.innerHTML="";
+    modalContent.remove();
     window.removeEventListener('keydown', closeModalOnEsk);
     buttonClose.removeEventListener('click',closeModalOnClick);
-    modal.removeEventListener('click', closeModalOnClick);
+    overlay.removeEventListener('click', closeModalOnClick);
+    content.removeEventListener('click', closeTrailer);
+    content.addEventListener('click',openTrailer)
+  
 };
  
 function closeModalOnEsk(e) {
@@ -235,8 +270,20 @@ function closeModalOnEsk(e) {
 };
 
 async function fetchMovieById() {
-    const results = await movieApiService.fetchById();
-    content.insertAdjacentHTML( "afterbegin",movieCardById(results));
+    const data = await movieApiService.fetchById();
+    // console.log(data);
+    
+    const  {results} = await movieApiService.fetchTrailer()
+  let key;
+    if(results.length === 0){
+        key='W9nZ6u15yis';
+       movieApiService.markupTempl(({data,genres,key}), content, movieCard); 
+    }
+    else{
+       key = results[0].key; 
+      movieApiService.markupTempl(({data,genres,key}), content, movieCard);
+    }
+    content.insertAdjacentHTML("afterbegin", movieCardById({ data,key }));
     
 
 }

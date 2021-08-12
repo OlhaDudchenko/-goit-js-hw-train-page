@@ -36,7 +36,13 @@ https://api.themoviedb.org/3/movie/${this.SearchId}?api_key=${API_KEY}&language=
       
 
 
-}
+  }
+  fetchTrailer() {
+    const url = `http://api.themoviedb.org/3/movie/${this.SearchId}/videos?api_key=${API_KEY}`;
+    return fetch(url).then(response =>
+      response.json()
+    ).then(data => { return data})
+  }
 
     fetchGenres(){
     const url = `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=en-US`;

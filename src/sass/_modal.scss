@@ -1,4 +1,5 @@
 /* Lightbox */
+
 .lightbox {
   display: flex;
   align-items: center;
@@ -12,20 +13,45 @@
   pointer-events: none;
   transition: opacity var(--animation-duration) var(--timing-function);
 }
+.backdrop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--animation-duration) var(--timing-function);
+}
+.backdrop.backdrop-is-open {
+  // z-index: 1;
+  opacity: 1;
+  pointer-events: initial;
+  // background-color: rgba(0, 0, 0, 0.8);
+}
+.backdrop__overlay {
+  position: absolute;
+  min-width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+}
 
 .lightbox.is-open {
   opacity: 1;
   pointer-events: initial;
-  background-color: rgba(0, 0, 0, 0.8);
+  // background-color: rgba(0, 0, 0, 0.8);
 }
 
-// .lightbox__overlay {
-//   top: 0;
-//   left: 0;
-//   width: 100vw;
-//   height: 100vh;
-//   background-color: rgba(0, 0, 0, 0.8);
-// }
+.lightbox__overlay {
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+}
 
 .lightbox__content {
   //   position: absolute;
@@ -101,12 +127,16 @@
 
 //-------------modal-content-------------------------
 .modal_movie {
-  display: flex;
+  @media screen and(min-width: 768px) {
+    display: flex;
+  }
 }
 .thumb_image {
+  height: 356.5px;
+  width: 240px;
   border-radius: 5px;
   @media screen and(min-width: 768px) {
-    height: 373.551025390625px;
+    height: 373.5px;
     width: 264px;
   }
   height: 477.8px;
@@ -121,6 +151,9 @@
 .modal_movie_info {
   margin-left: 30px;
   width: 396px;
+  @media screen and(min-width: 768px) {
+    margin-left: 32px;
+  }
 }
 
 .modal_movie_title {
@@ -139,7 +172,7 @@
 }
 .title_about {
   margin: 0;
-  margin-top: 10px;
+  margin-top: 20px;
   margin-bottom: 10px;
   font-family: Roboto;
   font-size: 12px;
@@ -161,8 +194,7 @@
 }
 .button_watched {
   padding: 0;
-  height: 44px;
-  width: 136px;
+
   border-radius: 5px;
   font-family: Roboto;
   font-size: 12px;
@@ -172,13 +204,19 @@
   text-transform: uppercase;
   color: #fff;
   background-color: rgba(255, 107, 1, 1);
+  @media screen and(min-width: 768px) {
+    height: 44px;
+    width: 125px;
+  }
+  @media screen and(min-width: 1024px) {
+    height: 44px;
+    width: 136px;
+  }
 }
 
 .button_queue {
   padding: 0;
   margin-left: 15px;
-  height: 44px;
-  width: 136px;
   border-radius: 5px;
   font-family: Roboto;
   font-size: 12px;
@@ -188,6 +226,36 @@
   text-transform: uppercase;
   color: #000;
   background-color: transparent;
+  @media screen and(min-width: 768px) {
+    height: 44px;
+    width: 125px;
+  }
+  @media screen and(min-width: 1024px) {
+    height: 44px;
+    width: 136px;
+  }
+}
+
+.button_open {
+  padding: 0;
+  margin-left: 15px;
+  border-radius: 5px;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  letter-spacing: 0em;
+  text-transform: uppercase;
+  color: #000;
+  background-color: transparent;
+  @media screen and(min-width: 768px) {
+    height: 44px;
+    width: 125px;
+  }
+  @media screen and(min-width: 1024px) {
+    height: 44px;
+    width: 136px;
+  }
 }
 
 .list_name {
@@ -228,5 +296,58 @@
   color: rgba(140, 140, 140, 1);
 }
 .list {
-  width: 266px;
+  @media screen and(min-width: 768px) {
+    width: 215px;
+  }
+  @media screen and(min-width: 1024px) {
+    width: 266px;
+  }
+}
+
+// .plyr__video-embed {
+//   max-height: 500px;
+//   max-width: 500px;
+// }
+.trailer_button {
+  position: fixed;
+  bottom: 65%;
+  right: 29%;
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 50%;
+  // background-color: transparent;
+  cursor: pointer;
+  // transition: background-color var(--animation-duration) var(--timing-function);
+  outline: none;
+  background-image: url('../images/close.svg');
+  // background-color: orangered;
+  background-position: center;
+  background-size: 60%;
+  background-repeat: no-repeat;
+  @media screen and(min-width: 768px) {
+    position: fixed;
+    bottom: 64%;
+    right: 8%;
+  }
+  @media screen and(min-width: 1024px) {
+    position: fixed;
+    bottom: 65%;
+    right: 29%;
+  }
+}
+// .plyr__video-embed {
+//   position: relative;
+// }
+iframe {
+  transform: translate(-51%, -50%);
+  min-width: 79vw;
+  min-height: 60vh;
+  position: fixed;
+  top: 50%;
 }
