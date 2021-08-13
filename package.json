@@ -27,6 +27,7 @@
   },
   "dependencies": {
     "modern-normalize": "^1.1.0",
+    "notiflix": "^3.0.1",
     "plyr": "^3.6.8"
   }
 }

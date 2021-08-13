@@ -4,7 +4,7 @@ import oneCard from "./templates/oneCard.hbs";
 import movieCardById from "./templates/movieCardById";
 import './sass/main.scss';
 import Plyr from 'plyr';
-// import  "../node_modules/plyr/src/sass";
+import { Notify } from "notiflix";
 
 const player = new Plyr('#player');
 
@@ -224,29 +224,104 @@ function openModalOnClick(e) {
     content.addEventListener('click',openTrailer)
   
     content.addEventListener('click', closeTrailer);
+    console.log(content)
+    console.log(document.querySelector(".plyr__controls"))
 
 }
-
+// window.addEventListener("click", (e) => { e.preventDefault()})
 function openTrailer(e) {
      console.log(e.target)
-        if (e.target.classList.contains("button_open")) {
-            document.querySelector(".plyr__video-embed").style.display = 'block';
+    // e.preventDefault();
+    if (e.target.classList.contains("button_open")) {
+        e.preventDefault();
+        //  const sourse = document.querySelector(".trailer").src;
+        // localStorage.setItem("trailerSourse", sourse);
+        // let src=localStorage.getItem("trailerSourse", sourse)
+            // console.log(document.querySelector(".plyr__video-embed"))
+        // document.querySelector(".trailer").style.display = 'block';
+        document.querySelector(".video-embed").style.display = 'block';
+        //    const player = new Plyr('#player');
+        // console.log(player)
+       
+        // player.play();
+        
+        // console.log(player.detail.code)
+        // document.querySelector(".trailer").style.display = 'block'
+        // const player = new Plyr('#player');
+        // console.log(player);
+        // console.log(document.querySelector(".plyr__controls"))
+        // const player = Plyr.setup('.plyr__video-embed');
+        // const player = document.getElementById("player");
+        // console.log(player)
+        //    document.getElementById("player").addEventListener('ready', event => {
+        // let instance = event.detail.plyr;
+        //        console.log(instance);
+        //     //    player.stopVideo();
+        //    });
+        // const player = Plyr.setup('.plyr__video-embed');
+        // player.play();
+        
+        // const player = document.getElementById("player");
+        // console.log(player);
+        
+         
+        // document.querySelector(".trailer").src = src;
+        // window.addEventListener("click", (e) => { e.preventDefault() })
+        // console.log(document.querySelector(".trailer").src)
+       
+        // console.log(document.querySelector(".ytp-large-play-button"))
+        //    console.log(document.querySelector(".plyr__video-embed"))
+            // const backdrop = document.querySelector(".backdrop");
+            // backdrop.classList.add("backdrop-is-open");
+            // const overlayForTrailer = document.querySelector(".backdrop__overlay");
+            // overlayForTrailer.addEventListener("click", closeTrailerOnOverleyClick);
+            // const videoTrailer = document.querySelector(".trailer");
+            // videoTrailer.addEventListener("click", (e) => { e.preventDefault});
             
-            const backdrop = document.querySelector(".backdrop");
-            console.log(backdrop)
-            backdrop.classList.add("backdrop-is-open");
         }
-    //  const backdrop = document.querySelector(".backdrop");
-    //         console.log(backdrop)
-    //         backdrop.classList.add("backdrop-is-open");
+   
 }
-console.log(document.querySelector(".backdrop__overlay"))
+
+
+// function closeTrailerOnOverleyClick() {
+//     const backdrop = document.querySelector(".backdrop");
+//      document.querySelector(".plyr__video-embed").style.display = 'none';
+//     backdrop.classList.remove("backdrop-is-open");
+//      const videoTrailer = document.querySelector(".trailer");
+//             videoTrailer.removeEventListener("click", (e) => { e.preventDefault});
+// };
+
 function closeTrailer(e) {
     if(e.target.classList.contains("trailer_button")) {
-        document.querySelector(".plyr__video-embed").style.display = 'none';
-         const backdrop = document.querySelector(".backdrop");
-            console.log(backdrop)
-            backdrop.classList.remove("backdrop-is-open");
+        document.querySelector(".video-embed").style.display = 'none';
+        function  stopPlayerHack(iframe){
+             iframe = document.querySelector('#ytplayer');
+            let src = iframe.getAttribute('src');
+            
+    iframe.setAttribute('src', '');
+    iframe.setAttribute('src', src);
+        }
+        stopPlayerHack();
+ 
+   
+
+       
+    
+       
+       
+        
+
+        //   player.stopVideo();
+        // document.querySelector(".trailer_button").window.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*')
+        // const backdrop = document.querySelector(".backdrop");
+        // backdrop.classList.remove("backdrop-is-open");
+        //  const overlayForTrailer = document.querySelector(".backdrop__overlay");
+        // overlayForTrailer.removeEventListener("click", closeTrailerOnOverleyClick);
+        // console.log(document.querySelector(".trailer"))
+        // const player = Plyr.setup('.trailer');
+        // player.pause();
+
+
     }
 }
 function closeModalOnClick() {
@@ -277,13 +352,17 @@ async function fetchMovieById() {
   let key;
     if(results.length === 0){
         key='W9nZ6u15yis';
-       movieApiService.markupTempl(({data,genres,key}), content, movieCard); 
+        // movieApiService.markupTempl(({ data, key }), content, movieCard);
+         content.insertAdjacentHTML("afterbegin", movieCardById({ data,key }));
+        Notify.init({ distance:"150px",fontSize:"15px", warning: {background:"#ff6f09",}, }); 
+        Notify.warning("Sorry!We dont have a trailer for this movie.");
     }
     else{
-       key = results[0].key; 
-      movieApiService.markupTempl(({data,genres,key}), content, movieCard);
+        key = results[0].key;
+         content.insertAdjacentHTML("afterbegin", movieCardById({ data,key }));
+    //   movieApiService.markupTempl(({data,key}), content, movieCard);
     }
-    content.insertAdjacentHTML("afterbegin", movieCardById({ data,key }));
+    // content.insertAdjacentHTML("afterbegin", movieCardById({ data,key }));
     
 
 }

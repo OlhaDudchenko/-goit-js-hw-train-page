@@ -19,36 +19,38 @@
       <button class="button_watched">add to Watched</button>
 <button class="button_queue">add to queue</button> 
 <button class="button_open">watch trailer</button>
-<div class="backdrop ">
-    <div class="backdrop__overlay"></div>
+{{!-- <div class="backdrop "> --}}
+    {{!-- <div class="backdrop__overlay"> --}}
 
-    {{!-- <div class="lightbox__content"> --}}
-        <button type="button" class="lightbox__button" data-action="close-lightbox"></button>
-        <div class="plyr__video-embed" id="player" style="display: none;">
+
+         <button type="button" class="trailer_button" data-action="close-trailer" onclick="stop()"></button>
+        {{!-- <div class="plyr__video-embed" id="player" style="display: none;"> --}}
+            {{!-- <iframe id='Youtube' class='center-block trailer' src='https://www.youtube.com/embed/${{key}}?enablejsapi=1' frameborder='0'
+                allowfullscreen   style="display: none;"></iframe> --}}
             
-                <iframe
-                    src="https://www.youtube.com/embed/{{key}}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
-                    allowfullscreen allowtransparency allow="autoplay">
-                </iframe>
-        
-            <button type="button" class="trailer_button" data-action="close-trailer"></button>
+                {{!-- <iframe class="trailer"
+                    src="https://www.youtube.com/embed/{{key}}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1&origin=https://localhost:1234"
+                    allowfullscreen allowtransparency allow="autoplay" >
+                </iframe> --}}
+                <script src="https://www.youtube.com/iframe_api"> </script>
+                <div class="video-embed" id="player" style="display: none;">
+                
+                <iframe id="ytplayer" type="text/html" width="640" height="360"
+                    src="http://www.youtube.com/embed/{{key}}?enablejsapi=1&autoplay=0&origin=http://1234" frameborder="0" />
+       
         </div>
-    {{!-- </div> --}}
+       
+         {{!-- </div> --}}
+            
+           
+    {{!-- </div>    --}}
+   
 
 
 </div>
-{{!-- <div class="plyr__video-embed" id="player" style="display: none;">
-   <div class="trailer_wrapper">
-        <iframe
-        src="https://www.youtube.com/embed/{{key}}?origin=https://plyr.io&amp;iv_load_policy=3&amp;modestbranding=1&amp;playsinline=1&amp;showinfo=0&amp;rel=0&amp;enablejsapi=1"
-        allowfullscreen allowtransparency allow="autoplay">
-       </iframe>
-       </div>
-   <button type="button" class="trailer_button" data-action="close-trailer"></button>  
-</div> --}}
 
-</div>
-    </div>
+
+
 
 
 </div>
